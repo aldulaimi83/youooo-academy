@@ -1,7 +1,7 @@
 const academyLinks = {
-  python: "https://YOUR-USERNAME.github.io/youooo-python/",
-  chess: "https://YOUR-USERNAME.github.io/chess/",
-  linux: "https://YOUR-USERNAME.github.io/Interactive-Terminal-Simulato/"
+  python: "https://aldulaimi83.github.io/youooo-python/",
+  chess: "https://aldulaimi83.github.io/chess/",
+  linux: "https://aldulaimi83.github.io/Interactive-Terminal-Simulato/"
 };
 
 function applyLinks() {
