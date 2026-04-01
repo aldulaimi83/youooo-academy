@@ -4,404 +4,936 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Youooo Academy V2</title>
-  <meta
-    name="description"
-    content="Youooo Academy is a modern learning ecosystem with Python, Chess, Linux, Git, and Cloud platforms."
-  />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Youooo Academy V2 — learn real skills, build real projects, and launch your career with the Youooo family of tools." />
+  <style>
+    :root {
+      --bg: #06070b;
+      --bg-soft: #0d1018;
+      --panel: rgba(16, 20, 32, 0.78);
+      --panel-strong: rgba(17, 23, 38, 0.95);
+      --text: #eef2ff;
+      --muted: #9aa4c7;
+      --line: rgba(255,255,255,0.09);
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+      --accent-3: #33ffa6;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 24px;
+      --max: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(124,92,255,.20), transparent 22%),
+        radial-gradient(circle at 82% 18%, rgba(0,212,255,.12), transparent 18%),
+        radial-gradient(circle at 50% 80%, rgba(51,255,166,.08), transparent 20%),
+        linear-gradient(180deg, #04050a 0%, #070a12 40%, #05070c 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(4, 7, 14, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 10px 35px rgba(124,92,255,.4);
+      font-size: 1.1rem;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .95rem;
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #5aa8ff);
+      color: white !important;
+      box-shadow: 0 12px 30px rgba(124,92,255,.25);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .card,
+    .faq-item,
+    .cta-box {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,18,28,.88), rgba(10,13,21,.94));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      border-radius: 34px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #dfe5ff;
+      font-weight: 700;
+      font-size: .85rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 18px;
+    }
+
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 0 rgba(51,255,166,.5);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(51,255,166,.5); }
+      70% { box-shadow: 0 0 0 14px rgba(51,255,166,0); }
+      100% { box-shadow: 0 0 0 0 rgba(51,255,166,0); }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: .95;
+      letter-spacing: -0.05em;
+      max-width: 10ch;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(90deg, #ffffff, #b6beff 35%, #72e0ff 78%, #8cffcb 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform .18s ease, opacity .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(124,92,255,.25);
+    }
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--text);
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero-meta {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .mini span { color: var(--muted); font-size: .92rem; }
+
+    .hero-panel {
+      border-radius: 34px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before,
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -120px -120px;
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(124,92,255,.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0,212,255,.12), transparent 68%);
+      pointer-events: none;
+    }
+
+    .panel-label {
+      color: var(--muted);
+      font-size: .84rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+
+    .count-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .count-box {
+      border-radius: 20px;
+      padding: 20px 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      text-align: center;
+    }
+
+    .count-box strong {
+      display: block;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      letter-spacing: -.05em;
+      margin-bottom: 8px;
+    }
+
+    .count-box span {
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .family-preview {
+      border-radius: 24px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .family-preview h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: #dbe5ff;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -.04em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 62ch;
+    }
+
+    .grid-4,
+    .grid-3,
+    .faq-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .faq-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+    .card {
+      border-radius: 26px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124,92,255,.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,212,255,.18));
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: .97rem;
+    }
+
+    .card .tag {
+      margin-top: 18px;
+      display: inline-flex;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: .82rem;
+      font-weight: 800;
+      color: #dfe6ff;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .family-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
+
+    .family-card .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .family-card .badge {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: .78rem;
+      font-weight: 800;
+      color: #e3e7ff;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .family-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .family-card li { margin-bottom: 4px; }
+
+    .family-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .faq-item {
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .cta-box {
+      border-radius: 34px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(124,92,255,.15), transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-box h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -.04em;
+      line-height: .98;
+    }
+
+    .cta-box p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 58ch;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-start;
+    }
+
+    footer {
+      padding: 26px 0 44px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .cta-box,
+      .grid-4,
+      .grid-3,
+      .faq-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid > :first-child,
+      .hero-grid > :last-child,
+      .cta-box > :first-child,
+      .cta-box > :last-child {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(calc(100% - 20px), var(--max)); }
+      .nav { padding: 12px 0; align-items: flex-start; }
+      .nav-links { gap: 12px; }
+      .hero { padding-top: 36px; }
+      .hero-copy, .hero-panel, .card, .faq-item, .cta-box { border-radius: 24px; }
+      .hero-copy, .hero-panel, .cta-box { padding: 22px; }
+      .hero-meta,
+      .count-grid,
+      .grid-4,
+      .grid-3,
+      .faq-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-grid > :first-child,
+      .hero-grid > :last-child,
+      .cta-box > :first-child,
+      .cta-box > :last-child {
+        grid-column: auto;
+      }
+      h1 { max-width: none; }
+      .nav-cta { padding: 10px 14px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="site-shell">
-    <header class="topbar">
-      <div class="brand-wrap">
-        <div class="brand-logo">Y</div>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Youooo Academy home">
+        <div class="brand-mark">Y</div>
         <div>
-          <h1>Youooo Academy</h1>
-          <p>One brand. Multiple learning platforms. Built to scale.</p>
+          <div>Youooo Academy</div>
+          <small>Build skills. Build projects. Build your career.</small>
         </div>
-      </div>
+      </a>
 
-      <nav class="top-nav">
-        <a href="#platforms">Platforms</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#future">Future</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#tracks">Tracks</a>
+        <a href="#family">Family</a>
+        <a href="#why">Why It Matters</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://aldulaimi83.github.io/youooo-resume/" target="_blank" rel="noopener noreferrer">Open Resume</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
+  <main id="home">
     <section class="hero">
-      <div class="hero-left">
-        <span class="pill">Academy Ecosystem V2</span>
-        <h2>Build practical skills through a growing network of modern learning websites.</h2>
-        <p>
-          Youooo Academy is the umbrella platform for skill-focused learning
-          products. Start with Python, Chess, Linux, Git, and Cloud — then grow into
-          AI and career-focused learning paths.
-        </p>
-
-        <div class="hero-actions">
-          <a class="primary-btn" href="#platforms">Explore Platforms</a>
-          <a class="ghost-btn" href="#future">See Future Vision</a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span>Platforms</span>
-            <strong id="statPlatforms">5</strong>
-          </div>
-          <div class="stat-card">
-            <span>Live Now</span>
-            <strong id="statLive">5</strong>
-          </div>
-          <div class="stat-card">
-            <span>Planned</span>
-            <strong id="statPlanned">3</strong>
-          </div>
-          <div class="stat-card">
-            <span>Main Brand</span>
-            <strong>Youooo</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="hero-panel">
-          <div class="mini-label">Why this matters</div>
-          <h3>Make learning feel like a product, not just a page.</h3>
-          <p>
-            The goal is not to build random websites. The goal is to build a
-            connected learning brand with strong UI, structured paths, and real
-            long-term value.
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span> Youooo Academy V2 is live</div>
+          <h1>Build <span class="hero-gradient">real skills</span>. Launch <span class="hero-gradient">real projects</span>.</h1>
+          <p class="lead">
+            Youooo Academy is your dark-mode learning hub for cloud, AI, Git, Linux, resume building, and project-based growth.
+            Learn like a builder, not just a viewer. Every section is designed to push users from learning into doing.
           </p>
-          <ul>
-            <li>Free hosting using GitHub Pages</li>
-            <li>Clean branding across all products</li>
-            <li>Easy future move to youooo.com</li>
-            <li>Better portfolio and business value</li>
-          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#tracks">Explore Tracks</a>
+            <a class="btn btn-secondary" href="https://aldulaimi83.github.io/youooo-resume/" target="_blank" rel="noopener noreferrer">Build Your Resume</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="mini">
+              <strong>6</strong>
+              <span>Core learning tracks</span>
+            </div>
+            <div class="mini">
+              <strong>1</strong>
+              <span>Unified Youooo brand</span>
+            </div>
+            <div class="mini">
+              <strong>Free</strong>
+              <span>Public-facing experience</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Youooo Academy summary panel">
+          <div class="panel-label">Academy stats</div>
+          <div class="count-grid">
+            <div class="count-box">
+              <strong>06</strong>
+              <span>Tracks</span>
+            </div>
+            <div class="count-box">
+              <strong>24/7</strong>
+              <span>Access</span>
+            </div>
+            <div class="count-box">
+              <strong>V2</strong>
+              <span>Design</span>
+            </div>
+          </div>
+
+          <div class="family-preview">
+            <h3>Youooo Family</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.75;">
+              A connected ecosystem of learning tools and public projects, starting with Youooo Academy and Youooo Resume.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Academy</span>
+              <span class="pill">Resume</span>
+              <span class="pill">Cloud</span>
+              <span class="pill">AI</span>
+              <span class="pill">Git</span>
+              <span class="pill">Chess</span>
+            </div>
+          </div>
+
+          <div class="family-preview">
+            <h3>What makes this different</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.75;">
+              Instead of only showing static lessons, Youooo Academy points users to interactive tools, builders, and portfolio-ready projects they can actually use.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="tracks">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Learning tracks</h2>
+            <p>Each track should feel like a mission area inside the Youooo system: practical, focused, and tied to real outcomes.</p>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="icon">☁️</div>
+            <h3>Youooo Cloud</h3>
+            <p>Learn cloud foundations, architecture thinking, services, deployment flow, and the real-world path from beginner to builder.</p>
+            <div class="tag">Cloud Skills</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">🤖</div>
+            <h3>Youooo AI</h3>
+            <p>Explore AI concepts, use cases, prompts, workflows, and product thinking in a way that feels practical instead of abstract.</p>
+            <div class="tag">AI Track</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌿</div>
+            <h3>Youooo Git</h3>
+            <p>Understand Git from beginner to advanced with a clearer path through commits, branches, pull requests, and collaboration flow.</p>
+            <div class="tag">Version Control</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>Terminal / Linux</h3>
+            <p>Learn command-line confidence with lessons, command reference style teaching, and hands-on practice that grows over time.</p>
+            <div class="tag">CLI Practice</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">♟️</div>
+            <h3>Youooo Chess</h3>
+            <p>Mix strategy, logic, practice, and play. This track adds a different kind of skill building through pattern recognition and focus.</p>
+            <div class="tag">Logic & Strategy</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">📄</div>
+            <h3>Youooo Resume</h3>
+            <p>Move from learning to job readiness with resume building, JD matching, stronger bullets, and an ATS-aware workflow.</p>
+            <div class="tag">Career Launch</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">🚀</div>
+            <h3>Project Launch</h3>
+            <p>Turn lessons into something public. The goal is to help users build and publish portfolio-ready work, not just finish pages.</p>
+            <div class="tag">Ship Projects</div>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧭</div>
+            <h3>Career Direction</h3>
+            <p>Connect learning tracks to actual outcomes such as cloud jobs, AI roles, validation work, and stronger public positioning.</p>
+            <div class="tag">Growth Path</div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-block featured-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Featured Platform</span>
-          <h2>Current flagship: Youooo Python</h2>
-          <p>
-            The strongest platform in the academy today — structured from
-            beginner to expert with projects, final exam, and certificate.
-          </p>
-        </div>
-      </div>
-
-      <div class="featured-platform-card">
-        <div class="featured-platform-content">
-          <div class="platform-top">
-            <span class="platform-badge">Flagship Product</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Python</h3>
-          <p>
-            A complete Python learning platform with lessons, roadmap,
-            challenges, projects, final exam, and certificate generation.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Beginner → Expert</span>
-            <span class="tag">Challenges</span>
-            <span class="tag">Projects</span>
-            <span class="tag">Certificate</span>
-          </div>
-          <div class="card-actions">
-            <a id="pythonLink" class="primary-btn small-btn" href="https://aldulaimi83.github.io/youooo-python/" target="_blank" rel="noopener">Open Python</a>
+    <section id="family">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>The Youooo family</h2>
+            <p>This section makes the ecosystem feel like one serious product family instead of separate small websites.</p>
           </div>
         </div>
 
-        <div class="featured-platform-side">
-          <div class="mini-panel">
-            <h4>Why it leads the academy</h4>
-            <ul>
-              <li>Most complete training structure</li>
-              <li>Strongest product-level feel</li>
-              <li>Best showcase for recruiters and LinkedIn</li>
-              <li>Good base for future premium learning model</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="grid-3">
+          <article class="card family-card">
+            <div>
+              <div class="topline">
+                <div class="icon">Y</div>
+                <span class="badge">Main Hub</span>
+              </div>
+              <h3>Youooo Academy</h3>
+              <p>The parent landing page that introduces the full ecosystem and sends users to the right learning or career tool.</p>
+              <ul>
+                <li>Dark futuristic homepage</li>
+                <li>Unified branding</li>
+                <li>Simple section-based navigation</li>
+              </ul>
+            </div>
+            <a class="family-link" href="#home">Explore Academy →</a>
+          </article>
 
-    <section id="platforms" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Platforms</span>
-          <h2>Current learning websites</h2>
-          <p>These are the first products under the Youooo Academy system.</p>
-        </div>
-      </div>
+          <article class="card family-card">
+            <div>
+              <div class="topline">
+                <div class="icon">📄</div>
+                <span class="badge">Featured</span>
+              </div>
+              <h3>Youooo Resume</h3>
+              <p>A public-facing resume product inside the family, focused on helping users build a stronger resume for real applications.</p>
+              <ul>
+                <li>ATS-friendly builder</li>
+                <li>Job description matching</li>
+                <li>Bullet improvement and PDF export</li>
+              </ul>
+            </div>
+            <a class="family-link" href="https://aldulaimi83.github.io/youooo-resume/" target="_blank" rel="noopener noreferrer">Open Youooo Resume →</a>
+          </article>
 
-      <div class="platform-grid">
-        <article class="platform-card featured-card">
-          <div class="platform-top">
-            <span class="platform-badge">Core Learning</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Python</h3>
-          <p>
-            Full Python academy from beginner to expert with lessons, roadmap,
-            coding challenges, projects, final exam, and certificate.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Python</span>
-            <span class="tag">Projects</span>
-            <span class="tag">Certificate</span>
-          </div>
-          <div class="card-actions">
-            <a id="pythonLink2" class="primary-btn small-btn" href="https://aldulaimi83.github.io/youooo-python/" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </article>
-
-        <article class="platform-card">
-          <div class="platform-top">
-            <span class="platform-badge">Strategy Learning</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Chess</h3>
-          <p>
-            A chess learning platform with academy direction, skill-building,
-            and future beginner-to-advanced development.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Chess</span>
-            <span class="tag">Training</span>
-            <span class="tag">Academy</span>
-          </div>
-          <div class="card-actions">
-            <a id="chessLink" class="ghost-btn small-btn" href="https://aldulaimi83.github.io/chess/" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </article>
-
-        <article class="platform-card">
-          <div class="platform-top">
-            <span class="platform-badge">Terminal Skills</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Linux</h3>
-          <p>
-            A Linux learning platform focused on terminal practice, commands,
-            and job-relevant system skills.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Linux</span>
-            <span class="tag">Terminal</span>
-            <span class="tag">Practice</span>
-          </div>
-          <div class="card-actions">
-            <a id="linuxLink" class="ghost-btn small-btn" href="https://aldulaimi83.github.io/Interactive-Terminal-Simulato/" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </article>
-
-        <article class="platform-card">
-          <div class="platform-top">
-            <span class="platform-badge">Developer Tools</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Git</h3>
-          <p>
-            A Git learning platform from beginner to expert covering commands,
-            workflows, branching, and real-world development usage.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Git</span>
-            <span class="tag">Branching</span>
-            <span class="tag">Workflows</span>
-          </div>
-          <div class="card-actions">
-            <a id="gitLink" class="ghost-btn small-btn" href="https://aldulaimi83.github.io/youooo-git/" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </article>
-
-        <article class="platform-card">
-          <div class="platform-top">
-            <span class="platform-badge">Cloud Engineering</span>
-            <span class="platform-status live">Live</span>
-          </div>
-          <h3>Youooo Cloud</h3>
-          <p>
-            A cloud learning platform teaching AWS, DevOps, and Kubernetes with
-            lessons, labs, projects, exam, diagrams, and certificate features.
-          </p>
-          <div class="tag-row">
-            <span class="tag">AWS</span>
-            <span class="tag">DevOps</span>
-            <span class="tag">Kubernetes</span>
-          </div>
-          <div class="card-actions">
-            <a id="cloudLink" class="ghost-btn small-btn" href="https://aldulaimi83.github.io/youooo-cloud/" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="ecosystem" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Ecosystem</span>
-          <h2>What makes this more than separate sites</h2>
-          <p>
-            The value comes from the system: one academy, multiple skill paths,
-            one recognizable brand.
-          </p>
-        </div>
-      </div>
-
-      <div class="value-grid">
-        <div class="value-card">
-          <h3>One academy brand</h3>
-          <p>
-            Instead of random separate projects, everything sits under the same
-            Youooo identity.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Stronger portfolio</h3>
-          <p>
-            Recruiters and hiring managers see a connected platform ecosystem,
-            not isolated demos.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Easy expansion</h3>
-          <p>
-            You can keep adding products like Cloud, AI, or Interview Prep
-            without changing the whole brand direction.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Future monetization</h3>
-          <p>
-            This structure can later support certificates, premium tracks,
-            membership, or enterprise training ideas.
-          </p>
+          <article class="card family-card">
+            <div>
+              <div class="topline">
+                <div class="icon">☁️</div>
+                <span class="badge">Learning</span>
+              </div>
+              <h3>Cloud / AI / Git / Chess</h3>
+              <p>The rest of the family expands the academy from one landing page into a full learning universe with multiple specialties.</p>
+              <ul>
+                <li>Cloud learning path</li>
+                <li>AI learning path</li>
+                <li>Git and strategy projects</li>
+              </ul>
+            </div>
+            <a class="family-link" href="#tracks">See track overview →</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="roadmap" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Roadmap</span>
-          <h2>How Youooo Academy grows</h2>
-          <p>Build step by step, while keeping the brand strong and clean.</p>
-        </div>
-      </div>
-
-      <div class="roadmap-grid">
-        <div class="roadmap-card">
-          <h3>Phase 1</h3>
-          <ul>
-            <li>Launch academy homepage</li>
-            <li>Connect Python, Chess, Linux, Git, Cloud</li>
-            <li>Keep one clean brand identity</li>
-          </ul>
+    <section id="why">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Why this matters</h2>
+            <p>Good learning websites explain. Better ones help users practice. The strongest ones help users build something they can actually show.</p>
+          </div>
         </div>
 
-        <div class="roadmap-card">
-          <h3>Phase 2</h3>
-          <ul>
-            <li>Upgrade learning products</li>
-            <li>Add more polished exams and certificates</li>
-            <li>Make the platforms feel premium</li>
-          </ul>
-        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Product feel</h3>
+            <p>The StarkHacks-inspired layout gives Youooo Academy more weight, more confidence, and a more modern landing-page identity.</p>
+          </article>
 
-        <div class="roadmap-card">
-          <h3>Phase 3</h3>
-          <ul>
-            <li>Add Youooo AI</li>
-            <li>Add career and interview learning tracks</li>
-            <li>Add more cross-platform learning paths</li>
-          </ul>
-        </div>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Brand system</h3>
+            <p>Instead of one-off projects floating around separately, users can see a consistent family and understand what each product does.</p>
+          </article>
 
-        <div class="roadmap-card">
-          <h3>Phase 4</h3>
-          <ul>
-            <li>Move everything under youooo.com</li>
-            <li>Create one academy landing system</li>
-            <li>Increase product and brand value</li>
-          </ul>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Career conversion</h3>
+            <p>Adding Youooo Resume directly into the academy flow connects learning with job readiness, which is a smart move for real users.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="future" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Future Vision</span>
-          <h2>Next products inside Youooo Academy</h2>
-          <p>These are the strongest next expansions for the ecosystem.</p>
-        </div>
-      </div>
-
-      <div class="future-grid">
-        <div class="future-card">
-          <h3>Youooo AI</h3>
-          <p>
-            Prompting, Python for AI, app-building, model workflows, and
-            practical AI projects.
-          </p>
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p>A polished FAQ section helps the website feel finished and makes the Academy look more like a real platform.</p>
+          </div>
         </div>
 
-        <div class="future-card">
-          <h3>Youooo Interview Prep</h3>
-          <p>
-            Technical questions, mock practice, resume support, and career-ready
-            preparation.
-          </p>
-        </div>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>What is Youooo Academy?</h3>
+            <p>Youooo Academy is the main learning hub for the Youooo ecosystem. It brings together skill-building tracks, portfolio-style projects, and career-focused tools in one place.</p>
+          </article>
 
-        <div class="future-card">
-          <h3>Youooo Kids Code</h3>
-          <p>
-            A simpler, more visual learning path for younger learners entering
-            programming.
-          </p>
-        </div>
+          <article class="faq-item">
+            <h3>Is Youooo Resume part of the academy?</h3>
+            <p>Yes. Youooo Resume is one of the main family products and should be featured as a core part of the Academy experience, not hidden as a side link.</p>
+          </article>
 
-        <div class="future-card">
-          <h3>Youooo Career Paths</h3>
-          <p>
-            Structured role-based learning for cloud engineer, DevOps engineer,
-            validation engineer, and other technical tracks.
-          </p>
+          <article class="faq-item">
+            <h3>Who is this for?</h3>
+            <p>It is designed for learners, career changers, builders, and anyone who wants to move from reading content to creating real public-facing work.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>What should come next after V2?</h3>
+            <p>The next upgrade should add real links for every family product, stronger track pages, and a more complete CTA flow so the homepage turns visitors into active users.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-block cta-block">
-      <div class="cta-card">
-        <span class="pill">Next Move</span>
-        <h2>The academy is now big enough to grow like a real product ecosystem.</h2>
-        <p>
-          You now have a stronger front door for the brand. Python is your flagship,
-          and Cloud adds strong career value to the academy.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#platforms">Review Platforms</a>
-          <a class="ghost-btn" href="#future">See What’s Next</a>
+    <section>
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Stop browsing. Start building.</h2>
+            <p>
+              Use Youooo Academy as the front door to your learning ecosystem, then send users directly into tools like Youooo Resume so the experience feels connected, polished, and real.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://aldulaimi83.github.io/youooo-resume/" target="_blank" rel="noopener noreferrer">Launch Resume Tool</a>
+            <a class="btn btn-secondary" href="#tracks">View Learning Tracks</a>
+          </div>
         </div>
       </div>
     </section>
+  </main>
 
-    <footer class="footer">
-      <p>Youooo Academy • A growing learning ecosystem for practical skills</p>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 Youooo Academy V2. Built as the main hub for the Youooo family.</div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#tracks">Tracks</a>
+        <a href="#family">Family</a>
+        <a href="https://aldulaimi83.github.io/youooo-resume/" target="_blank" rel="noopener noreferrer">Resume</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
