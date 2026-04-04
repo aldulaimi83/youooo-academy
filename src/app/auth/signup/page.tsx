@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
+import { signup } from '../actions'
 
 export default function SignupPage() {
   return (
@@ -27,32 +28,26 @@ export default function SignupPage() {
         <div className="bg-[#111118] border border-white/5 rounded-2xl p-8">
           <form className="space-y-4">
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5">Full name</label>
-              <input
-                type="text"
-                placeholder="Ahmed"
+              <label className="block text-sm text-slate-400 mb-1.5" htmlFor="name">Full name</label>
+              <input id="name" name="name" type="text" required placeholder="Ahmed"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-colors placeholder:text-slate-600"
               />
             </div>
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5">Email</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
+              <label className="block text-sm text-slate-400 mb-1.5" htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" required placeholder="you@example.com"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-colors placeholder:text-slate-600"
               />
             </div>
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5">Password</label>
-              <input
-                type="password"
-                placeholder="Min. 8 characters"
+              <label className="block text-sm text-slate-400 mb-1.5" htmlFor="password">Password</label>
+              <input id="password" name="password" type="password" required minLength={8} placeholder="Min. 8 characters"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-colors placeholder:text-slate-600"
               />
             </div>
 
             <button
-              type="submit"
+              formAction={signup}
               className="w-full bg-violet-600 hover:bg-violet-500 text-white py-3.5 rounded-xl font-semibold transition-all hover:scale-105 text-sm"
             >
               Create free account
