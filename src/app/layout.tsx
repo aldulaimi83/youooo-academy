@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Youooo Academy — Learn Python, Linux, Git, Cloud & AI',
-  description: 'Modern online learning platform. Master Python, Linux, Git, Cloud, Chess, and AI with real projects and certificates.',
+  title: 'YouOOO Academy | Learn Python, Cloud, Git, and More',
+  description: 'The YouOOO learning hub for Python, Cloud, Git, and future technical tracks.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
