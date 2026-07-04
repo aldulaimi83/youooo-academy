@@ -1,11 +1,10 @@
 import Link from 'next/link'
-import { login } from '../actions'
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  const { error } = await searchParams
+export default function LoginPage() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
+        {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 items-center justify-center text-white text-xl font-bold mb-4">
             Y
@@ -15,24 +14,19 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </div>
 
         <div className="bg-[#111118] border border-white/5 rounded-2xl p-8">
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm px-4 py-3 rounded-xl mb-4">
-              {decodeURIComponent(error)}
-            </div>
-          )}
           <form className="space-y-4">
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5" htmlFor="email">Email</label>
+              <label className="block text-sm text-slate-400 mb-1.5">Email</label>
               <input
-                id="email" name="email" type="email" required
+                type="email"
                 placeholder="you@example.com"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-colors placeholder:text-slate-600"
               />
             </div>
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5" htmlFor="password">Password</label>
+              <label className="block text-sm text-slate-400 mb-1.5">Password</label>
               <input
-                id="password" name="password" type="password" required
+                type="password"
                 placeholder="••••••••"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/50 transition-colors placeholder:text-slate-600"
               />
@@ -43,7 +37,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             </div>
 
             <button
-              formAction={login}
+              type="submit"
               className="w-full bg-violet-600 hover:bg-violet-500 text-white py-3.5 rounded-xl font-semibold transition-all hover:scale-105 text-sm"
             >
               Log in
@@ -71,7 +65,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </div>
 
         <p className="text-center text-sm text-slate-500 mt-6">
-          Don&apos;t have an account?{' '}
+          Don't have an account?{' '}
           <Link href="/auth/signup" className="text-violet-400 hover:text-violet-300">Sign up free</Link>
         </p>
       </div>

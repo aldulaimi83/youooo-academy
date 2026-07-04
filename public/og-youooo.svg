@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7EEDC"/>
+      <stop offset="0.52" stop-color="#F1DFC4"/>
+      <stop offset="1" stop-color="#D9B887"/>
+    </linearGradient>
+    <linearGradient id="card" x1="240" y1="160" x2="960" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF9F0"/>
+      <stop offset="1" stop-color="#F4E7D2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="130" fill="#BFA06A" fill-opacity="0.18"/>
+  <circle cx="210" cy="520" r="190" fill="#88A07D" fill-opacity="0.16"/>
+  <rect x="120" y="120" width="960" height="390" rx="40" fill="url(#card)" stroke="#D9BE96" stroke-width="2"/>
+  <rect x="170" y="175" width="220" height="36" rx="18" fill="#F4E2C1"/>
+  <text x="188" y="199" fill="#A06E3B" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">THE YOUOOO NETWORK</text>
+  <text x="170" y="282" fill="#2F2015" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">YouOOO</text>
+  <text x="170" y="344" fill="#2F2015" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">Network</text>
+  <text x="170" y="400" fill="#6C5641" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="500">Games, Quran, resume tools, learning, and utilities.</text>
+  <rect x="700" y="190" width="320" height="240" rx="28" fill="#FFF8EE" stroke="#E0CBA8" stroke-width="2"/>
+  <rect x="724" y="214" width="272" height="70" rx="18" fill="#8D5F33"/>
+  <text x="744" y="254" fill="#FFF7EA" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Games</text>
+  <text x="744" y="278" fill="#F8D8A4" font-family="Arial, Helvetica, sans-serif" font-size="12">Stickman Smart Escape · Gems Crush · Mahjong</text>
+  <rect x="724" y="300" width="84" height="102" rx="18" fill="#F0D08C"/>
+  <rect x="816" y="300" width="84" height="102" rx="18" fill="#D7B68A"/>
+  <rect x="908" y="300" width="88" height="102" rx="18" fill="#A97142"/>
+  <text x="742" y="362" fill="#2F2015" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Games</text>
+  <text x="834" y="362" fill="#2F2015" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Quran</text>
+  <text x="926" y="362" fill="#FFF7EA" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Resume</text>
+</svg>
